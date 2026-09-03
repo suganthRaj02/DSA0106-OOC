@@ -1,0 +1,22 @@
+{
+    "name": "emergency-drone-fleet",
+    "version": "1.0.0",
+    "description": "Emergency Drone Fleet and Mission Management System",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "keywords": [
+        "drone",
+        "emergency",
+        "fleet",
+        "mission",
+        "management"
+    ],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "dependencies": {
+        "express": "^5.2.1"
+    }
+}

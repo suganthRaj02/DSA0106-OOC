@@ -1,0 +1,62 @@
+[
+    {
+        "id": "D01",
+        "name": "Rescue-01",
+        "type": "Rescue",
+        "battery": 90,
+        "payload": 10,
+        "range": 50,
+        "priority": "High",
+        "status": "Deployed"
+    },
+    {
+        "id": "D02",
+        "name": "Medical-01",
+        "type": "Medical",
+        "battery": 80,
+        "payload": 5,
+        "range": 40,
+        "priority": "High",
+        "status": "Deployed"
+    },
+    {
+        "id": "D03",
+        "name": "Survey-01",
+        "type": "Surveillance",
+        "battery": 60,
+        "payload": 3,
+        "range": 60,
+        "priority": "Medium",
+        "status": "Deployed"
+    },
+    {
+        "id": "D04",
+        "name": "Hybrid-01",
+        "type": "Hybrid",
+        "battery": 95,
+        "payload": 12,
+        "range": 70,
+        "priority": "High",
+        "status": "Deployed"
+    },
+    {
+        "id": "D05",
+        "name": "Rescue-02",
+        "type": "Rescue",
+        "battery": 90,
+        "payload": 10,
+        "range": 75,
+        "priority": "High",
+        "status": "Deployed"
+    },
+    {
+        "id": "D06",
+        "name": "medical-03",
+        "type": "Rescue",
+        "battery": 88,
+        "payload": 15,
+        "range": 77,
+        "priority": "Medium",
+        "status": "Deployed"
+    }
+]

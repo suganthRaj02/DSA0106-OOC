@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Drone Fleet Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo-area">
+
+            <svg class="drone-logo" viewBox="0 0 200 100">
+                <line x1="45" y1="30" x2="80" y2="45" />
+                <line x1="155" y1="30" x2="120" y2="45" />
+
+                <circle cx="35" cy="25" r="12" />
+                <circle cx="165" cy="25" r="12" />
+
+                <rect x="75" y="35" width="50" height="30" rx="8" />
+
+                <line x1="80" y1="45" x2="45" y2="30" />
+                <line x1="120" y1="45" x2="155" y2="30" />
+
+                <circle cx="90" cy="50" r="4" />
+                <circle cx="110" cy="50" r="4" />
+            </svg>
+
+            <div>
+                <h1>Emergency Drone Fleet</h1>
+                <p>Mission Management System</p>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <nav class="navbar">
+
+        <button onclick="showSection('dashboard')">
+            Dashboard
+        </button>
+
+        <button onclick="showSection('drones')">
+            Drones
+        </button>
+
+        <button onclick="showSection('missions')">
+            Missions
+        </button>
+
+        <button onclick="showSection('reports')">
+            Reports
+        </button>
+
+    </nav>
+
+
+    <main class="container">
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard">
+
+            <h2>Fleet Dashboard</h2>
+
+            <div class="cards">
+
+                <div class="card total-card">
+                    <div class="card-icon">🚁</div>
+                    <h3>Total Drones</h3>
+                    <p id="totalDrones">0</p>
+                </div>
+
+                <div class="card available-card">
+                    <div class="card-icon">✓</div>
+                    <h3>Available Drones</h3>
+                    <p id="availableDrones">0</p>
+                </div>
+
+                <div class="card deployed-card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Deployed Drones</h3>
+                    <p id="deployedDrones">0</p>
+                </div>
+
+                <div class="card battery-card">
+                    <div class="card-icon">🔋</div>
+                    <h3>Low Battery</h3>
+                    <p id="lowBattery">0</p>
+                </div>
+
+            </div>
+
+
+            <div class="online-box">
+
+                <span class="online-dot"></span>
+
+                System Online
+
+            </div>
+
+
+            <div class="dashboard-banner">
+
+                <h2>Emergency Response Command Center</h2>
+
+                <p>
+                    Monitor drones, allocate emergency missions,
+                    and generate fleet reports in real time.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- DRONES -->
+
+        <section id="drones" class="hidden">
+
+            <div class="section-header">
+
+                <h2>Drone Fleet</h2>
+
+                <button class="main-button" onclick="showAddDrone()">
+                    + Add New Drone
+                </button>
+
+            </div>
+
+
+            <div id="addDroneForm" class="form-box hidden">
+
+                <h3>Add New Drone</h3>
+
+                <div class="form-grid">
+
+                    <input
+                        id="droneId"
+                        type="text"
+                        placeholder="Drone ID"
+                    >
+
+                    <input
+                        id="droneName"
+                        type="text"
+                        placeholder="Drone Name"
+                    >
+
+                    <select id="droneType">
+
+                        <option value="Rescue">
+                            Rescue
+                        </option>
+
+                        <option value="Medical">
+                            Medical
+                        </option>
+
+                        <option value="Surveillance">
+                            Surveillance
+                        </option>
+
+                        <option value="Hybrid">
+                            Hybrid
+                        </option>
+
+                    </select>
+
+
+                    <input
+                        id="droneBattery"
+                        type="number"
+                        placeholder="Battery %"
+                        min="0"
+                        max="100"
+                    >
+
+                    <input
+                        id="dronePayload"
+                        type="number"
+                        placeholder="Payload (kg)"
+                        min="0"
+                    >
+
+                    <input
+                        id="droneRange"
+                        type="number"
+                        placeholder="Range (km)"
+                        min="0"
+                    >
+
+
+                    <select id="dronePriority">
+
+                        <option value="High">
+                            High Priority
+                        </option>
+
+                        <option value="Medium">
+                            Medium Priority
+                        </option>
+
+                        <option value="Low">
+                            Low Priority
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="main-button"
+                    onclick="addDrone()"
+                >
+                    Save Drone
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Battery</th>
+                            <th>Payload</th>
+                            <th>Range</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="droneTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- MISSIONS -->
+
+        <section id="missions" class="hidden">
+
+            <h2>Mission Management</h2>
+
+
+            <div class="mission-box">
+
+                <h3>Allocate Emergency Mission</h3>
+
+
+                <label>Mission Type</label>
+
+                <select id="missionType">
+
+                    <option value="Rescue">
+                        Rescue
+                    </option>
+
+                    <option value="Medical">
+                        Medical
+                    </option>
+
+                    <option value="Surveillance">
+                        Surveillance
+                    </option>
+
+                </select>
+
+
+                <label>Select Available Drone</label>
+
+                <select id="droneSelect">
+
+                    <option value="">
+                        Select Drone
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="main-button"
+                    onclick="allocateMission()"
+                >
+                    Allocate Mission
+                </button>
+
+
+                <div
+                    id="missionMessage"
+                    class="message"
+                ></div>
+
+            </div>
+
+
+            <h3>Mission History</h3>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Mission ID</th>
+                            <th>Type</th>
+                            <th>Drone ID</th>
+                            <th>Drone Name</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Date</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="missionTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORTS -->
+
+        <section id="reports" class="hidden">
+
+            <h2>Fleet Reports</h2>
+
+
+            <div class="report-grid">
+
+                <div class="report-card">
+
+                    <h3>Total Fleet</h3>
+
+                    <p id="reportTotal">0</p>
+
+                </div>
+
+
+                <div class="report-card">
+
+                    <h3>Available</h3>
+
+                    <p id="reportAvailable">0</p>
+
+                </div>
+
+
+                <div class="report-card">
+
+                    <h3>Deployed</h3>
+
+                    <p id="reportDeployed">0</p>
+
+                </div>
+
+            </div>
+
+
+            <h3>Mission Statistics</h3>
+
+
+            <div class="report-grid">
+
+                <div class="report-card">
+
+                    <h3>Total Missions</h3>
+
+                    <p id="totalMissions">0</p>
+
+                </div>
+
+
+                <div class="report-card">
+
+                    <h3>Rescue Missions</h3>
+
+                    <p id="rescueMissions">0</p>
+
+                </div>
+
+
+                <div class="report-card">
+
+                    <h3>Medical Missions</h3>
+
+                    <p id="medicalMissions">0</p>
+
+                </div>
+
+
+                <div class="report-card">
+
+                    <h3>Surveillance Missions</h3>
+
+                    <p id="surveillanceMissions">0</p>
+
+                </div>
+
+
+                <div class="report-card cost-card">
+
+                    <h3>Total Mission Cost</h3>
+
+                    <p id="totalCost">₹0</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Emergency Drone Fleet and Mission Management System
+        </p>
+
+        <p>
+            Developed using HTML, CSS, JavaScript, Node.js & C++
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
